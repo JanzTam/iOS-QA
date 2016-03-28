@@ -6,5 +6,7 @@
 
 # QA
 第0个：Example：
+
 Q:我遇到一个问题，我在UITableView里加了很多圆角，滑动的时候很卡，请问大家有什么好的解决方案吗？
+
 A:某成员：你可以在加载图片的时候用CAShapeLayer先给这个图片加个遮罩，然后用SDWebImage来做缓存。Demo地址：https://github.com
