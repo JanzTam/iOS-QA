@@ -13,10 +13,40 @@ A:某成员：你可以在加载图片的时候用CAShapeLayer先给这个图片
 
 ***
 
-1、@嗷大喵
+1、From @嗷大喵
 
 Q:如何实现映客那种点赞动画？
 
 A:DMHeartFlyAnimation https://github.com/singer1026/DMHeartFlyAnimation
 
+
+2、From @匿名
+
+Q:为什么touchesBegan不响应？我想在一个UIScrollView上通过touchesBegan关闭键盘，但是无法响应。
+```Objc
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+```
+
+A:通过UIScrollView类目，重写touches方法
+```Objc
+@implementation UIScrollView (UITouchEvent)
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [[self nextResponder] touchesBegan:touches withEvent:event];
+    [super touchesBegan:touches withEvent:event];
+}
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [[self nextResponder] touchesMoved:touches withEvent:event];
+    [super touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [[self nextResponder] touchesEnded:touches withEvent:event];
+    [super touchesEnded:touches withEvent:event];
+}
+
+@end
+```
 
