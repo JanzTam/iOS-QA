@@ -10,3 +10,13 @@
 Q:我遇到一个问题，我在UITableView里加了很多圆角，滑动的时候很卡，请问大家有什么好的解决方案吗？
 
 A:某成员：你可以在加载图片的时候用CAShapeLayer先给这个图片加个遮罩，然后用SDWebImage来做缓存。Demo地址：https://github.com
+
+***
+
+1、@嗷大喵
+
+Q:如何实现映客那种点赞动画？
+
+A:DMHeartFlyAnimation https://github.com/singer1026/DMHeartFlyAnimation
+
+
