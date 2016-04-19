@@ -13,14 +13,14 @@ A:某成员：你可以在加载图片的时候用CAShapeLayer先给这个图片
 
 ***
 
-1、From @嗷大喵
+# 1、From @嗷大喵
 
 Q:如何实现映客那种点赞动画？
 
 A:DMHeartFlyAnimation https://github.com/singer1026/DMHeartFlyAnimation
 
 
-2、From @匿名
+# 2、From @匿名
 
 Q:为什么touchesBegan不响应？我想在一个UIScrollView上通过touchesBegan关闭键盘，但是无法响应。
 ```Objc
@@ -50,3 +50,24 @@ A:通过UIScrollView类目，重写touches方法
 @end
 ```
 
+# 3、From @Vision
+Q:我想做一个接口前面验证,流程是这样:对拼接起来的字符串进行`HmacSHA1`加密，key为secretKey(示例中的7f3dd901ad3742e9abe60ded914fc9c0)，再将其二进制字节用`BASE64`加密，最终得到签名，刚才那段字符串进行上述操作以后生成的签名
+
+A:
+```Objc
+NSString *key;
+NSString *data;
+
+const char *cKey  = [key cStringUsingEncoding:NSASCIIStringEncoding];
+const char *cData = [data cStringUsingEncoding:NSASCIIStringEncoding];
+
+unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
+
+CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
+
+NSData *HMAC = [[NSData alloc] initWithBytes:cHMAC
+                                      length:sizeof(cHMAC)];
+
+NSString *hash = [HMAC base64Encoding];
+```
+hash即为最后的签名。
